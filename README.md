@@ -1,11 +1,11 @@
-## Novus Automagic Downloader
+## Nolvus Automagic Downloader
 
 ### Background for those interested
 
-The Novus modpack requires a lot of files to be downloaded from
+The Nolvus modpack requires a lot of files to be downloaded from
 Nexus Mods. Although possible to download the mods through manually
 "clicking" the "Slow Download" button on the Nexus Mods website rendered
-within the Novus Dashboard. This will take a substantial amount of time
+within the Nolvus Dashboard. This will take a substantial amount of time
 to complete.
 
 The solution of course is to just buy the premium subscription from 
@@ -19,7 +19,7 @@ popup over the button etc.
 
 ### Requirements
 
-Launch the Novus Dashboard with the `--remote-debugging-port=8088`.
+Launch the Nolvus Dashboard with the `--remote-debugging-port=8088`.
 This can be done on Windows by creating a shortcut of the executable
 and then specifying the flags after the executable in the `Target` field.
 
@@ -35,10 +35,13 @@ Then run the Automagic Downloader.
 go run .
 ```
 
-### Build Novus Automagic Downloader
+### Build Nolvus Automagic Downloader
 
 ```console
-git clone git@github.com:Benehiko/novus-automagic-downloader.git
-cd novus-automagic-downloader
+git clone git@github.com:Benehiko/nolvus-automagic-downloader.git
+cd nolvus-automagic-downloader
 go build .
+./nolvus-automagic-downloader
 ```
+
+### Run Nolvus with Wine
