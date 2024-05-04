@@ -1,5 +1,7 @@
 ## Nolvus Automagic Downloader
 
+![example](./example.png)
+
 ### Background for those interested
 
 The Nolvus modpack requires a lot of files to be downloaded from
