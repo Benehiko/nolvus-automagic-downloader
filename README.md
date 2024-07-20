@@ -14,12 +14,14 @@ The solution of course is to just buy the premium subscription from
 Nexus Mods. But that's not why you are here ;) - nor me.
 
 Being annoyed at manually clicking the slow download button, I decided to 
-find out how to automate it. Of course the inital thought is to use an automated
+find out how to automate it. Of course, the initial thought is to use an automated
 mouse clicker. This doesn't work since the window rendering the website
 might not be scrolled to the correct position or some Nexus mods video ads would
 popup over the button etc.
 
 ### Requirements
+
+#### 1. Edited Nolvus Dashboard shortcut
 
 Launch the Nolvus Dashboard with the `--remote-debugging-port=8088`.
 This can be done on Windows by creating a shortcut of the executable
@@ -31,20 +33,64 @@ Example:
 Target: "<path to exe>" --remote-debugging-port=8088
 ```
 
-Then run the Automagic Downloader.
+#### 2. Installed GoLang
 
-```
-go run .
-```
+Ensure that GoLang is installed on your system. If not, follow these steps to install GoLang:
 
-### Build Nolvus Automagic Downloader
+1. You can find the latest Go release [here](https://go.dev/dl/).
+2. Choose the appropriate installer for your operating system (Windows, macOS, or Linux).
+3. Run the downloaded installer and follow the on-screen instructions.
+4. Confirm the installation by opening a terminal or command prompt and typing:
+    ```powershell
+    go version
+    ```
 
-```console
-git clone git@github.com:Benehiko/nolvus-automagic-downloader.git
-cd nolvus-automagic-downloader
-go build .
-./nolvus-automagic-downloader
-```
+5. You should see an output indicating the installed version of GoLang, confirming that the installation was successful.
+
+### Nolvus Automagic Downloader Installation & Usage
+
+1. **Build Nolvus Automagic Downloader**
+
+    - Open **Windows Powershell** console
+
+        - Press `Win + X` and select Windows PowerShell (or Windows Terminal if you have it installed).
+
+    - Clone the Repository:
+
+        ```powershell
+        git clone git@github.com:Benehiko/nolvus-automagic-downloader.git
+        cd nolvus-automagic-downloader
+        ```
+
+        - **Note:** If you aren't a skilled GitHub user but still want to download this wonderful utility, it might be easier for you to download the repository as a ZIP file (click the `< > Code` button at the top of the page and the `Download ZIP` button).
+
+    - Build the Nolvus Automagic Downloader app:
+
+        ```powershell
+        go build .
+        ```
+
+        - **Note:** If you encounter a build error saying that there is a problem with your Go version, open the `go.mod` file in your text editor and change the mentioned Go version so it matches your Go version.
+
+    - Don't close the console yet.
+
+2. **Edit the Nolvus Dashboard shortcut as mentioned above**
+
+3. **Launch the Nolvus Dashboard shortcut and start the mod download process**
+
+    - **Note:** You might need to launch the shortcut with admin privileges (it depends on your PC settings and the Nolvus Dashboard location on your disk).
+
+4. **Run the Nolvus Automagic Downloader**
+
+    ```powershell
+    go run .
+    ```
+
+5. **Now sit back and wait patiently for the download to finish**
+
+    - **Note:** You should be able to use your PC normally during the download.
+
+    - **Note:** Don't close the Console while the download is proceeding as it would close the Nolvus Automagic Downloader. If you close your Console accidentally, don't panic, just launch the Nolvus Automagic Downloader again :-)
 
 ### Run Nolvus with Wine
 
@@ -101,14 +147,12 @@ https://wiki.archlinux.org/title/Microsoft_fonts
 
 ### Misc
 
-Running the downloads this way could re-focus the mouse on to the popup window which is very
-annoying if you are still using the PC.
+**A workaround if still having problems with pop-up ads.**
 
-So far I have been able to disable the rendering through CEF with additional flags but this 
-does not prevent Nolvus from popping up a new window.
+Running the downloads this way could re-focus the mouse on to the popup window which is very annoying if you are still using the PC.
+
+So far I have been able to disable the rendering through CEF with additional flags but this does not prevent Nolvus from popping up a new window.
 
 ```console
 --off-screen-rendering-enabled --headless --disable-gpu 
 ```
-
-
