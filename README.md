@@ -70,7 +70,7 @@ Ensure that GoLang is installed on your system. If not, follow these steps to in
         go build .
         ```
 
-        - **Note:** If you encounter a build error saying that there is a problem with your Go version, open the `go.mod` file in your text editor and change the mentioned Go version so it matches your Go version.
+        - **Note:** If you encounter a build error saying that there is a problem with your Go version, open the `go.mod` file in your text editor and verify your version of Go is the same or greater.
 
     - Don't close the console yet.
 
