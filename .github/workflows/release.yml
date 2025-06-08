@@ -1,0 +1,68 @@
+name: 📦 Build & Release
+
+# Trigger on semver tags like v1.2.3
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [1.24]
+        os: [linux, darwin, windows]
+        arch: [amd64, arm64]
+    outputs:
+      # expose the dist folder so the release job can pick it up
+      dist-path: dist
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Go ${{ matrix.go-version }}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Build ${{ matrix.os }}/${{ matrix.arch }}
+        run: |
+          # ensure dist dir exists
+          mkdir -p dist/${{ matrix.os }}_${{ matrix.arch }}
+
+          # pick up extension for Windows
+          ext=""
+          if [ "${{ matrix.os }}" = "windows" ]; then ext=".exe"; fi
+
+          # cross-compile
+          GOOS=${{ matrix.os }} \
+          GOARCH=${{ matrix.arch }} \
+          CGO_ENABLED=0 \
+          go build \
+            -ldflags="-s -w" \
+            -o dist/${{ matrix.os }}_${{ matrix.arch }}/nolvus-automagic-downloader${ext} \
+            .
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nolvus-automagic-downloader-${{ matrix.os }}-${{ matrix.arch }}
+          path: dist/${{ matrix.os }}_${{ matrix.arch }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          # newline-delimited list of glob patterns to upload
+          files: |
+            dist/**/*
+
