@@ -2,6 +2,21 @@
 
 ![example](./example.png)
 
+### Quickstart
+
+- Download the release binary from [GitHub releases](https://github.com/Benehiko/nolvus-automagic-downloader/releases).
+- Launch Nolvus Dashboard with the `--remote-debugging-port=8088` flag
+This can be done on Windows by creating a shortcut of the executable
+and then specifying the flags after the executable in the `Target` field.
+
+Example:
+
+```
+Target: "<path to exe>" --remote-debugging-port=8088
+```
+
+- Run nolvus-automagic-downloader in powershell or windows CMD.
+
 ### Background for those interested
 
 The Nolvus modpack requires a lot of files to be downloaded from
