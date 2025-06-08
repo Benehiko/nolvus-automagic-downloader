@@ -45,7 +45,7 @@ jobs:
           CGO_ENABLED=0 \
           go build \
             -ldflags="-s -w" \
-            -o dist/${{ matrix.os }}_${{ matrix.arch }}/nolvus-automagic-downloader${ext} \
+            -o dist/${{ matrix.os }}_${{ matrix.arch }}/nolvus-automagic-downloader-${{ matrix.os }}-${{ matrix.arch }}${ext} \
             .
 
       - name: Upload build artifacts
